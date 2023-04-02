@@ -1,0 +1,8 @@
+{
+  "name": "yacq-backend",
+  "version": "1.0.0",
+  "devDependencies": {
+    "eslint": "^8.37.0",
+    "typescript": "^5.0.3"
+  }
+}
