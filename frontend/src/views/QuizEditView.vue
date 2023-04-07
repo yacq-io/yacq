@@ -1,15 +1,19 @@
 <script setup lang="ts">
-defineProps({
-    title: String
-});
+import SlidePreviewList from '@/components/SlidePreviewList.vue';
+import SlideEditor from '@/components/SlideEditor.vue';
+
+defineProps<{
+  title: String
+}>();
 </script>
 
 <template>
-    <main>
-        <h2>Edit: {{ title }}</h2>
+  <main>
+    <h2>Edit: {{ title }}</h2>
 
-        <div>
-
-        </div>
-    </main>
+    <div>
+      <SlidePreviewList :slides="[]" />
+      <SlideEditor :slide="undefined" />
+    </div>
+  </main>
 </template>

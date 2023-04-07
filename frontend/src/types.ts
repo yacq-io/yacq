@@ -1,16 +1,16 @@
 export enum SlideType {
-    Question, Slide
+  Question, Slide,
 }
 
-export type SlideInfo = SlideInfoSlide & SlideInfoQuestion;
+export type SlideInfo = SlideInfoSlide | SlideInfoQuestion;
 
-interface SlideInfoSlide {
-    type: SlideType.Slide;
-    title: string;
+export interface SlideInfoSlide {
+  type: SlideType.Slide;
+  title: string;
 }
 
-interface SlideInfoQuestion {
-    type: SlideType.Question;
-    title: string;
-    answers: string[];
+export interface SlideInfoQuestion {
+  type: SlideType.Question;
+  title: string;
+  answers: string[];
 }
