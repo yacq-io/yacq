@@ -12,6 +12,7 @@ defineProps<{
       v-if="image"
       :src="image"
     >
+    <slot />
   </div>
 </template>
 

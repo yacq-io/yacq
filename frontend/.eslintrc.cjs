@@ -25,7 +25,6 @@ module.exports = {
     }],
     'consistent-return': 'error',
     curly: ['error', 'multi-line'], // multiline
-    'default-case': ['error', { commentPattern: '^no default$' }],
     'default-case-last': 'error',
     'dot-location': ['error', 'property'],
     eqeqeq: ['error', 'always', { null: 'ignore' }],
@@ -651,5 +650,10 @@ module.exports = {
     '@typescript-eslint/space-infix-ops': 'error',
     'object-curly-spacing': 'off',
     '@typescript-eslint/object-curly-spacing': ['error', 'always'],
+
+    // Custom
+
+    'default-case': 'off',
+    '@typescript-eslint/switch-exhaustiveness-check': 'error',
   },
 };

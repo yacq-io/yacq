@@ -2,7 +2,6 @@
 import router from '@/router';
 
 function editQuiz(e: Event) {
-  console.log(e.target);
   if (e.target instanceof HTMLElement) router.push({ name: 'edit', params: { title: e.target.innerText } });
 }
 </script>

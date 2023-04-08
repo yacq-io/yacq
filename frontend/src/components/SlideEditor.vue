@@ -8,7 +8,8 @@ defineProps<{
   slide: SlideInfo
 }>();
 
-defineEmits<{ (event: 'edit'): void
+defineEmits<{
+  (event: 'edit', slide: SlideInfo): void
 }>();
 </script>
 
@@ -17,10 +18,12 @@ defineEmits<{ (event: 'edit'): void
     <SlideSlideEditor
       v-if="slide.type == SlideType.Slide"
       :slide="slide"
+      @edit="s => $emit('edit', s)"
     />
     <QuestionSlideEditor
       v-if="slide.type == SlideType.Question"
       :slide="slide"
+      @edit="s => $emit('edit', s)"
     />
   </div>
 </template>

@@ -5,7 +5,8 @@ defineProps<{
   slide: SlideInfoQuestion
 }>();
 
-defineEmits<{ (event: 'edit'): void
+defineEmits<{
+  (event: 'edit', slide: SlideInfoQuestion): void
 }>();
 </script>
 

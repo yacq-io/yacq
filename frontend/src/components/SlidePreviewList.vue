@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import SlidePreview from '@/components/SlidePreview.vue';
 import type { SlideInfo } from '@/types';
+import { SlideType } from '@/types';
 
 withDefaults(defineProps<{
   slides: SlideInfo[]
@@ -8,7 +9,9 @@ withDefaults(defineProps<{
   slides: () => [] as SlideInfo[],
 });
 
-defineEmits<{ (event: 'add'): void
+defineEmits<{
+  (event: 'add', type: SlideType): void,
+  (event: 'select', index: number): void
 }>();
 </script>
 
@@ -18,11 +21,18 @@ defineEmits<{ (event: 'add'): void
       v-for="[index, slide] of slides.entries()"
       :key="index"
       :title="slide.title"
-    />
+      @click="$emit('select', index)"
+    >
+      {{ slide.type == SlideType.Slide ? "S" : "Q" }}
+    </SlidePreview>
     <a
       href="#"
-      @click.prevent="$emit('add')"
+      @click.prevent="$emit('add', SlideType.Slide)"
     >Add slide</a>
+    <a
+      href="#"
+      @click.prevent="$emit('add', SlideType.Question)"
+    >Add question</a>
   </div>
 </template>
 

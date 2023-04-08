@@ -2,6 +2,8 @@ export enum SlideType {
   Question, Slide,
 }
 
+export type Optional<T> = T | undefined;
+
 export type SlideInfo = SlideInfoSlide | SlideInfoQuestion;
 
 export interface SlideInfoSlide {
