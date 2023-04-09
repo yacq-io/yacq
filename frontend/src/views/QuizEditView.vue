@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import SlidePreviewList from '@/components/SlidePreviewList.vue';
 import SlideEditor from '@/components/SlideEditor.vue';
-import { ref } from 'vue';
+import { ref, shallowRef } from 'vue';
 import type { Optional, SlideInfo } from '@/types';
 import { SlideType } from '@/types';
 
@@ -9,8 +9,17 @@ defineProps<{
   title: String
 }>();
 
-const slide = ref<Optional<SlideInfo>>(undefined);
-const slides = ref<Array<SlideInfo>>([]);
+const slide = shallowRef<Optional<SlideInfo>>(undefined);
+const slides = ref<Array<SlideInfo>>([
+  {
+    type: SlideType.Slide,
+    title: 'Quiz 1',
+  },
+  {
+    type: SlideType.Slide,
+    title: 'Quiz 2',
+  },
+]);
 
 let currentIndex = 0;
 
@@ -41,7 +50,6 @@ function addSlide(type: SlideType) {
 
 function updateSlide(update: SlideInfo) {
   slides.value[currentIndex] = update;
-  selectSlide(currentIndex);
 }
 </script>
 

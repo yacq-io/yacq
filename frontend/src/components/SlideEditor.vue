@@ -18,12 +18,12 @@ defineEmits<{
     <SlideSlideEditor
       v-if="slide.type == SlideType.Slide"
       :slide="slide"
-      @edit="s => $emit('edit', s)"
+      @edit="$emit('edit', $event)"
     />
     <QuestionSlideEditor
       v-if="slide.type == SlideType.Question"
       :slide="slide"
-      @edit="s => $emit('edit', s)"
+      @edit="$emit('edit', $event)"
     />
   </div>
 </template>
