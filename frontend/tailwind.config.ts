@@ -5,6 +5,9 @@ export default {
   darkMode: 'media',
   theme: {
     extend: {},
+    fontFamily: {
+      display: ['Acme', 'serif'],
+    },
   },
   plugins: [],
 } as Config;

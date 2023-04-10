@@ -1,0 +1,6 @@
+@import "reset.css";
+
+[contenteditable=true] {
+    @apply border-black;
+    @apply px-4;
+}

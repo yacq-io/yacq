@@ -4,7 +4,7 @@ import { RouterView } from 'vue-router';
 
 <template>
   <header>
-    <h1>yacq</h1>
+    <h1 class="font-display">yacq</h1>
     <ul>
       <li>
         <router-link to="/">
@@ -23,5 +23,7 @@ import { RouterView } from 'vue-router';
 </template>
 
 <style lang="postcss" scoped>
-
+header {
+    @apply w-full inline-flex items-center;
+}
 </style>

@@ -18,6 +18,9 @@ dependencies:
     version: 4.1.6(vue@3.2.47)
 
 devDependencies:
+  '@fontsource/acme':
+    specifier: ^4.5.10
+    version: 4.5.10
   '@rushstack/eslint-patch':
     specifier: ^1.2.0
     version: 1.2.0
@@ -317,6 +320,10 @@ packages:
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /@fontsource/acme@4.5.10:
+    resolution: {integrity: sha512-yGt8yeaUGgjbuRei+dRE4hO7E1nxXxXk9cBJv6wFMzIqCxUhfkidS+WNRpd40HUROtLbX1t7KJp5SCfcMjfKRA==}
     dev: true
 
   /@humanwhocodes/config-array@0.11.8:
