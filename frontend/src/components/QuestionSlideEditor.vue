@@ -13,7 +13,7 @@ const emit = defineEmits<{
 function titleChange(ev: InputEvent) {
   if (ev.target) {
     const update: SlideInfoQuestion = { ...props.slide };
-    update.title = (ev.target as HTMLElement).innerHTML;
+    update.title = (ev.target as HTMLElement).innerText;
     emit('edit', update);
   }
 }
@@ -21,7 +21,7 @@ function titleChange(ev: InputEvent) {
 function answerChange(ev: InputEvent, id: number) {
   if (ev.target) {
     const update: SlideInfoQuestion = unref(props.slide);
-    update.answers[id].name = (ev.target as HTMLElement).innerHTML;
+    update.answers[id].name = (ev.target as HTMLElement).innerText;
     emit('edit', update);
   }
 }

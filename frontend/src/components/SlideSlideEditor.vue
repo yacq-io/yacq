@@ -12,7 +12,7 @@ const emit = defineEmits<{
 function titleChange(ev: InputEvent) {
   if (ev.target) {
     const update: SlideInfoSlide = { ...props.slide };
-    update.title = (ev.target as HTMLElement).innerHTML;
+    update.title = (ev.target as HTMLElement).innerText;
     emit('edit', update);
   }
 }
