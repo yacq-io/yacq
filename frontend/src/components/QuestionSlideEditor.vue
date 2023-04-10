@@ -10,7 +10,7 @@ const emit = defineEmits<{
   (event: 'edit', slide: SlideInfoQuestion): void
 }>();
 
-function titleChange(ev: InputEvent) {
+function titleChange(ev: Event) {
   if (ev.target) {
     const update: SlideInfoQuestion = { ...props.slide };
     update.title = (ev.target as HTMLElement).innerText;
@@ -18,7 +18,7 @@ function titleChange(ev: InputEvent) {
   }
 }
 
-function answerChange(ev: InputEvent, id: number) {
+function answerChange(ev: Event, id: number) {
   if (ev.target) {
     const update: SlideInfoQuestion = unref(props.slide);
     update.answers[id].name = (ev.target as HTMLElement).innerText;
@@ -26,7 +26,7 @@ function answerChange(ev: InputEvent, id: number) {
   }
 }
 
-function answerCorrectChange(ev: InputEvent, id: number) {
+function answerCorrectChange(ev: Event, id: number) {
   if (ev.target) {
     const update: SlideInfoQuestion = unref(props.slide);
     update.answers[id].correct = (ev.target as HTMLInputElement).checked;
@@ -56,11 +56,11 @@ function answerCorrectChange(ev: InputEvent, id: number) {
           contenteditable="true"
           @input="answerChange($event, n-1)"
         >
-          {{ slide.answers[n-1][0] }}
+          {{ slide.answers[n-1].name }}
         </span>
         <input
           type="checkbox"
-          :value="slide.answers[n-1][1]"
+          :value="slide.answers[n-1].correct"
           @input="answerCorrectChange($event, n-1)"
         >
       </li>
@@ -68,9 +68,5 @@ function answerCorrectChange(ev: InputEvent, id: number) {
   </div>
 </template>
 
-<style lang="scss" scoped>
-[contenteditable=true] {
-  border: 1px solid black;
-  padding: 0 .5em
-}
+<style lang="postcss" scoped>
 </style>

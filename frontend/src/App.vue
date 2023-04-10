@@ -22,5 +22,6 @@ import { RouterView } from 'vue-router';
   <RouterView />
 </template>
 
-<style scoped>
+<style lang="postcss" scoped>
+
 </style>

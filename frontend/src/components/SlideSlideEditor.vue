@@ -9,7 +9,7 @@ const emit = defineEmits<{
   (event: 'edit', slide: SlideInfoSlide): void
 }>();
 
-function titleChange(ev: InputEvent) {
+function titleChange(ev: Event) {
   if (ev.target) {
     const update: SlideInfoSlide = { ...props.slide };
     update.title = (ev.target as HTMLElement).innerText;
@@ -24,7 +24,6 @@ function titleChange(ev: InputEvent) {
       Title:
       <span
         contenteditable="true"
-        style="border: 1px solid black; padding: 0 .5em"
         @input="titleChange"
       >
         {{ slide.title }}
@@ -33,5 +32,5 @@ function titleChange(ev: InputEvent) {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="postcss" scoped>
 </style>
