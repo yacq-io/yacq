@@ -23,7 +23,10 @@ defineEmits<{
       :title="slide.title"
       @click="$emit('select', index)"
     >
-      {{ slide.type == SlideType.Slide ? "S" : "Q" }}
+      {{ slide.type == SlideType.Slide ? "S" : "Q" }}<br>
+      <span v-if="slide.type == SlideType.Question">
+        {{ slide.answers.map(a => a.name).join(", ") }}
+      </span>
     </SlidePreview>
     <a
       href="#"

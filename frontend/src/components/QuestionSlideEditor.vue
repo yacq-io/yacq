@@ -1,18 +1,76 @@
 <script setup lang="ts">
 import type { SlideInfoQuestion } from '@/types';
+import { unref } from 'vue';
 
-defineProps<{
+const props = defineProps<{
   slide: SlideInfoQuestion
 }>();
 
-defineEmits<{
+const emit = defineEmits<{
   (event: 'edit', slide: SlideInfoQuestion): void
 }>();
+
+function titleChange(ev: InputEvent) {
+  if (ev.target) {
+    const update: SlideInfoQuestion = { ...props.slide };
+    update.title = (ev.target as HTMLElement).innerHTML;
+    emit('edit', update);
+  }
+}
+
+function answerChange(ev: InputEvent, id: number) {
+  if (ev.target) {
+    const update: SlideInfoQuestion = unref(props.slide);
+    update.answers[id].name = (ev.target as HTMLElement).innerHTML;
+    emit('edit', update);
+  }
+}
+
+function answerCorrectChange(ev: InputEvent, id: number) {
+  if (ev.target) {
+    const update: SlideInfoQuestion = unref(props.slide);
+    update.answers[id].correct = (ev.target as HTMLInputElement).checked;
+    emit('edit', update);
+  }
+}
 </script>
 
 <template>
-  <div />
+  <div>
+    <h2>
+      Title:
+      <span
+        contenteditable="true"
+        @input="titleChange"
+      >
+        {{ slide.title }}
+      </span>
+    </h2>
+    <h5>Answers</h5>
+    <ol>
+      <li
+        v-for="n in 4"
+        :key="n-1"
+      >
+        <span
+          contenteditable="true"
+          @input="answerChange($event, n-1)"
+        >
+          {{ slide.answers[n-1][0] }}
+        </span>
+        <input
+          type="checkbox"
+          :value="slide.answers[n-1][1]"
+          @input="answerCorrectChange($event, n-1)"
+        >
+      </li>
+    </ol>
+  </div>
 </template>
 
 <style lang="scss" scoped>
+[contenteditable=true] {
+  border: 1px solid black;
+  padding: 0 .5em
+}
 </style>

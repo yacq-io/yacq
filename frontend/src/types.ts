@@ -14,5 +14,10 @@ export interface SlideInfoSlide {
 export interface SlideInfoQuestion {
   type: SlideType.Question;
   title: string;
-  answers: string[];
+  answers: Answer[];
+}
+
+export interface Answer {
+  name: string;
+  correct: boolean;
 }

@@ -9,15 +9,25 @@ defineProps<{
   title: String
 }>();
 
-const slide = shallowRef<Optional<SlideInfo>>(undefined);
+const slide = ref<Optional<SlideInfo>>(undefined);
 const slides = ref<Array<SlideInfo>>([
   {
     type: SlideType.Slide,
-    title: 'Quiz 1',
+    title: 'Slide 1',
   },
   {
     type: SlideType.Slide,
-    title: 'Quiz 2',
+    title: 'Slide 2',
+  },
+  {
+    type: SlideType.Question,
+    title: 'Quiz 1',
+    answers: [
+      { name: '', correct: false },
+      { name: '', correct: false },
+      { name: '', correct: false },
+      { name: '', correct: false },
+    ],
   },
 ]);
 
@@ -25,7 +35,6 @@ let currentIndex = 0;
 
 function selectSlide(index: number) {
   currentIndex = index;
-  slide.value = undefined;
   slide.value = slides.value[index];
 }
 
