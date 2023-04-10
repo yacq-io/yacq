@@ -4,6 +4,9 @@ dependencies:
   pinia:
     specifier: ^2.0.32
     version: 2.0.32(typescript@4.8.4)(vue@3.2.47)
+  uuid:
+    specifier: ^9.0.0
+    version: 9.0.0
   vue:
     specifier: ^3.2.47
     version: 3.2.47
@@ -18,6 +21,9 @@ devDependencies:
   '@types/node':
     specifier: ^18.14.2
     version: 18.14.2
+  '@types/uuid':
+    specifier: ^9.0.1
+    version: 9.0.1
   '@typescript-eslint/eslint-plugin':
     specifier: ^5.57.1
     version: 5.57.1(@typescript-eslint/parser@5.57.0)(eslint@8.34.0)(typescript@4.8.4)
@@ -362,6 +368,10 @@ packages:
 
   /@types/semver@7.3.13:
     resolution: {integrity: sha512-21cFJr9z3g5dW8B0CVI9g2O9beqaThGQ6ZFBqHfwhzLDKUxaqTIy3vnfah/UPkfOiF2pLq+tGz+W8RyCskuslw==}
+    dev: true
+
+  /@types/uuid@9.0.1:
+    resolution: {integrity: sha512-rFT3ak0/2trgvp4yYZo5iKFEPsET7vKydKF+VRCxlQ9bpheehyAJH89dAkaLEq/j/RZXJIqcgsmPJKUP1Z28HA==}
     dev: true
 
   /@typescript-eslint/eslint-plugin@5.57.1(@typescript-eslint/parser@5.57.0)(eslint@8.34.0)(typescript@4.8.4):
@@ -2242,6 +2252,11 @@ packages:
   /util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
     dev: true
+
+  /uuid@9.0.0:
+    resolution: {integrity: sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg==}
+    hasBin: true
+    dev: false
 
   /validate-npm-package-license@3.0.4:
     resolution: {integrity: sha512-DpKm2Ui/xN7/HQKCtpZxoRWBhZ9Z0kqtygG8XCgNQ8ZlDnxuQmWhj566j8fN4Cu3/JmbhsDo7fcAJq4s9h27Ew==}

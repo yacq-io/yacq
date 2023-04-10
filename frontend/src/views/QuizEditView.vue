@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import SlidePreviewList from '@/components/SlidePreviewList.vue';
 import SlideEditor from '@/components/SlideEditor.vue';
-import { ref, shallowRef } from 'vue';
+import { ref } from 'vue';
 import type { Optional, SlideInfo } from '@/types';
 import { SlideType } from '@/types';
+import { v1 as uuidv1 } from 'uuid';
 
 defineProps<{
   title: String
@@ -12,14 +13,17 @@ defineProps<{
 const slide = ref<Optional<SlideInfo>>(undefined);
 const slides = ref<Array<SlideInfo>>([
   {
+    uuid: uuidv1(),
     type: SlideType.Slide,
     title: 'Slide 1',
   },
   {
+    uuid: uuidv1(),
     type: SlideType.Slide,
     title: 'Slide 2',
   },
   {
+    uuid: uuidv1(),
     type: SlideType.Question,
     title: 'Quiz 1',
     answers: [
@@ -38,23 +42,37 @@ function selectSlide(index: number) {
   slide.value = slides.value[index];
 }
 
-function addSlide(type: SlideType) {
+function addSlide(type: SlideType, beforeIndex: number) {
+  let newSlide: SlideInfo;
   switch (type) {
     case SlideType.Slide:
-      slides.value.push({
+      newSlide = {
+        uuid: uuidv1(),
         type,
         title: '',
-      });
+      };
       break;
     case SlideType.Question:
-      slides.value.push({
+      newSlide = {
+        uuid: uuidv1(),
         type,
         title: '',
-        answers: [],
-      });
+        answers: [
+          { name: '', correct: false },
+          { name: '', correct: false },
+          { name: '', correct: false },
+          { name: '', correct: false },
+        ],
+      };
       break;
   }
-  selectSlide(slides.value.length - 1);
+  if (beforeIndex < 0) {
+    slides.value.push(newSlide);
+    selectSlide(slides.value.length - 1);
+  } else {
+    slides.value.splice(beforeIndex, 0, newSlide);
+    selectSlide(beforeIndex);
+  }
 }
 
 function updateSlide(update: SlideInfo) {

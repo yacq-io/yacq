@@ -3,8 +3,9 @@ export enum SlideType {
 }
 
 export type Optional<T> = T | undefined;
+type WithUUID<T> = T & { uuid: string };
 
-export type SlideInfo = SlideInfoSlide | SlideInfoQuestion;
+export type SlideInfo = WithUUID<SlideInfoSlide | SlideInfoQuestion>;
 
 export interface SlideInfoSlide {
   type: SlideType.Slide;
