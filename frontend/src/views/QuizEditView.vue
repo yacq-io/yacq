@@ -81,20 +81,41 @@ function updateSlide(update: SlideInfo) {
 </script>
 
 <template>
-  <main>
+  <section>
     <h2>Edit: {{ title }}</h2>
+    <hr>
 
-    <div>
-      <SlidePreviewList
-        :slides="slides"
-        @add="addSlide"
-        @select="selectSlide"
-      />
-      <SlideEditor
-        v-if="slide"
-        :slide="slide"
-        @edit="updateSlide"
-      />
+    <div class="main">
+      <aside>
+        <SlidePreviewList
+          :slides="slides"
+          @add="addSlide"
+          @select="selectSlide"
+        />
+      </aside>
+      <div class="editor">
+        <SlideEditor
+          v-if="slide"
+          :slide="slide"
+          @edit="updateSlide"
+        />
+      </div>
     </div>
-  </main>
+  </section>
 </template>
+
+<style lang="postcss" scoped>
+hr {
+    @apply my-2;
+}
+.main {
+    @apply flex items-start gap-x-5;
+
+    aside {
+        @apply max-w-lg min-w-[240px];
+    }
+    .editor {
+        @apply w-full h-full border;
+    }
+}
+</style>

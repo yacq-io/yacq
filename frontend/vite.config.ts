@@ -3,6 +3,8 @@ import { fileURLToPath, URL } from 'node:url';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 
+// eslint-disable-next-line no-undef
+const tailwindcssNesting = require('tailwindcss/nesting');
 import tailwindcss from 'tailwindcss';
 import autoprefixer from 'autoprefixer';
 
@@ -16,7 +18,7 @@ export default defineConfig({
   },
   css: {
     postcss: {
-      plugins: [tailwindcss, autoprefixer],
+      plugins: [tailwindcssNesting, tailwindcss, autoprefixer],
     },
   },
 });

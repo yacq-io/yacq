@@ -5,7 +5,7 @@ import App from './App.vue';
 import router from './router';
 
 import '@fontsource/acme';
-import './main.css';
+import './assets/tailwind.css';
 
 const app = createApp(App);
 

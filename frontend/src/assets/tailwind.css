@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Base Styles */
+
 h1 {
     @apply text-4xl;
 }
@@ -24,4 +26,11 @@ h5, h6 {
 
 ul {
     @apply list-disc ml-5;
+}
+
+/* Custom Styles */
+
+[contenteditable=true] {
+    @apply border-black;
+    @apply px-4;
 }
