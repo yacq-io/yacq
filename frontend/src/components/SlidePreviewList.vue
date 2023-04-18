@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import SlidePreview from '@/components/SlidePreview.vue';
 import type { SlideInfo } from '@/types';
-import { SlideType } from '@/types';
+import type { SlideType } from '@/types';
 import AddSlide from '@/components/helpers/AddSlide.vue';
 
 withDefaults(defineProps<{
@@ -17,24 +17,15 @@ defineEmits<{
 </script>
 
 <template>
-  <div>
+  <div class="mx-2 mt-3">
     <SlidePreview
       v-for="[index, slide] of slides.entries()"
       :key="index"
-      :title="slide.title"
+      :i="index+1"
+      :slide="slide"
+      class="py-3 min-h-[180px]"
       @click="$emit('select', index)"
-    >
-      <template #before>
-        <AddSlide
-          :before-index="index"
-          @add="(type, beforeIndex) => $emit('add', type, beforeIndex)"
-        />
-      </template>
-      {{ slide.type == SlideType.Slide ? "S" : "Q" }}<br>
-      <span v-if="slide.type == SlideType.Question">
-        {{ slide.answers.map(a => a.name).join(", ") }}
-      </span>
-    </SlidePreview>
+    />
     <AddSlide
       :before-index="-1"
       @add="(type, beforeIndex) => $emit('add', type, beforeIndex)"

@@ -36,8 +36,8 @@ function answerCorrectChange(ev: Event, id: number) {
 </script>
 
 <template>
-  <div>
-    <h2>
+  <div class="flex flex-col justify-between h-full">
+    <h2 class="text-center">
       Title:
       <span
         contenteditable="true"
@@ -46,13 +46,14 @@ function answerCorrectChange(ev: Event, id: number) {
         {{ slide.title }}
       </span>
     </h2>
-    <h5>Answers</h5>
-    <ol>
+    <ol class="grid grid-cols-2 gap-2">
       <li
         v-for="n in 4"
         :key="n-1"
+        class="flex justify-between w-full p-4"
       >
         <span
+          class="grow"
           contenteditable="true"
           @input="answerChange($event, n-1)"
         >
@@ -60,6 +61,7 @@ function answerCorrectChange(ev: Event, id: number) {
         </span>
         <input
           type="checkbox"
+          class="mx-3"
           :value="slide.answers[n-1].correct"
           @input="answerCorrectChange($event, n-1)"
         >
@@ -69,4 +71,16 @@ function answerCorrectChange(ev: Event, id: number) {
 </template>
 
 <style lang="postcss" scoped>
+li:nth-child(1) {
+    @apply bg-red-500;
+}
+li:nth-child(2) {
+    @apply bg-blue-500;
+}
+li:nth-child(3) {
+    @apply bg-green-500;
+}
+li:nth-child(4) {
+    @apply bg-yellow-500;
+}
 </style>

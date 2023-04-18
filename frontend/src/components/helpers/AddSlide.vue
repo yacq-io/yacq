@@ -13,28 +13,26 @@ defineEmits<{
 </script>
 
 <template>
-  <div class="inline-flex justify-center">
-    <a
-      href="#"
-      title="Add slide"
-      @click.prevent="$emit('add', SlideType.Slide, beforeIndex)"
-    >
-      <DocumentPlusIcon class="h-8 w-8" />
-    </a>
-    <a
-      href="#"
-      title="Add question"
+  <div class="flex flex-col justify-center">
+    <button
+      type="button"
+      class="bg-blue-400"
       @click.prevent="$emit('add', SlideType.Question, beforeIndex)"
     >
-      <IconStack class="h-8 w-8">
-        <Bars4Icon class="h-8 w-8" />
-        <template #top>
-          <PlusCircleIcon class="h-4 w-4 bg-white" />
-        </template>
-      </IconStack>
-    </a>
+      Add Question
+    </button>
+    <button
+      type="button"
+      class="bg-gray-200"
+      @click.prevent="$emit('add', SlideType.Slide, beforeIndex)"
+    >
+      Add Slide
+    </button>
   </div>
 </template>
 
 <style lang="postcss" scoped>
+button {
+    @apply w-full p-2 rounded-lg m-2;
+}
 </style>

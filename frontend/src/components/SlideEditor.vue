@@ -14,7 +14,7 @@ defineEmits<{
 </script>
 
 <template>
-  <div>
+  <div class="p-3 h-[80vh] mr-3">
     <SlideSlideEditor
       v-if="slide.type == SlideType.Slide"
       :slide="slide"

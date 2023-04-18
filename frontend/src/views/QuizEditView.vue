@@ -27,10 +27,10 @@ const slides = ref<Array<SlideInfo>>([
     type: SlideType.Question,
     title: 'Quiz 1',
     answers: [
-      { name: '', correct: false },
-      { name: '', correct: false },
-      { name: '', correct: false },
-      { name: '', correct: false },
+      { name: 'A', correct: false },
+      { name: 'B', correct: false },
+      { name: 'C', correct: false },
+      { name: 'D', correct: false },
     ],
   },
 ]);
@@ -82,34 +82,26 @@ function updateSlide(update: SlideInfo) {
 
 <template>
   <section>
-    <h2>Edit: {{ title }}</h2>
-    <hr>
-
-    <div class="main">
-      <aside>
-        <SlidePreviewList
-          :slides="slides"
-          @add="addSlide"
-          @select="selectSlide"
-        />
-      </aside>
-      <div class="editor">
-        <SlideEditor
-          v-if="slide"
-          :slide="slide"
-          @edit="updateSlide"
-        />
-      </div>
+    <aside class="w-48">
+      <SlidePreviewList
+        :slides="slides"
+        @add="addSlide"
+        @select="selectSlide"
+      />
+    </aside>
+    <div class="editor">
+      <SlideEditor
+        v-if="slide"
+        :slide="slide"
+        @edit="updateSlide"
+      />
     </div>
   </section>
 </template>
 
 <style lang="postcss" scoped>
-hr {
-    @apply my-2;
-}
-.main {
-    @apply flex items-start gap-x-5;
+section {
+    @apply flex items-start gap-x-5 h-full w-full pt-[56px] absolute top-0 left-0;
 
     aside {
         @apply max-w-lg min-w-[240px];
