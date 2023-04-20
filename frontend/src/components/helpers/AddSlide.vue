@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { SlideType } from '@/types';
-import { DocumentPlusIcon, Bars4Icon, PlusCircleIcon } from '@heroicons/vue/24/outline';
-import IconStack from '@/components/helpers/IconStack.vue';
 
 defineProps<{
   beforeIndex: number
@@ -13,17 +11,17 @@ defineEmits<{
 </script>
 
 <template>
-  <div class="flex flex-col justify-center">
+  <div class="flex flex-col justify-center font-bold">
     <button
       type="button"
-      class="bg-blue-400"
+      class="bg-blue-700 hover:bg-blue-600 text-white"
       @click.prevent="$emit('add', SlideType.Question, beforeIndex)"
     >
       Add Question
     </button>
     <button
       type="button"
-      class="bg-gray-200"
+      class="bg-gray-300 hover:bg-gray-400"
       @click.prevent="$emit('add', SlideType.Slide, beforeIndex)"
     >
       Add Slide

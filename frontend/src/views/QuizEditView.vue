@@ -27,7 +27,7 @@ const slides = ref<Array<SlideInfo>>([
     type: SlideType.Question,
     title: 'Quiz 1',
     answers: [
-      { name: 'A', correct: false },
+      { name: 'A', correct: true },
       { name: 'B', correct: false },
       { name: 'C', correct: false },
       { name: 'D', correct: false },
