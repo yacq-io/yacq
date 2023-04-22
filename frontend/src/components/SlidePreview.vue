@@ -32,7 +32,7 @@ const slideType = computed<string>(() => {
 <template>
   <div
     :class="$props.class"
-    class="flex flex-col text-sm"
+    class="flex flex-col text-sm w-full"
     @click="$emit('click', $event)"
   >
     <span class="font-semibold ml-5 w-100">
@@ -57,8 +57,11 @@ const slideType = computed<string>(() => {
           </a>
         </div>
       </div>
-      <div class="grow bg-gray-100 rounded h-full p-2 text-center flex flex-col justify-between">
-        <h6 class="text-ellipsis overflow-hidden">
+      <div
+        class="grow bg-gray-100 rounded h-full min-w-[94%] max-w-[94%]
+               p-2 mr-3 text-center flex flex-col justify-between"
+      >
+        <h6 class="ellipsis text-sm">
           {{ slide.title }}
         </h6>
         <div class="flex items-center justify-center">
@@ -78,7 +81,7 @@ const slideType = computed<string>(() => {
               :key="index"
               class="flex justify-between w-full items-center pr-1"
             >
-              <span class="overflow-hidden text-ellipsis">
+              <span class="ellipsis">
                 {{ answer.name }}
               </span>
               <div class="w-3">

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import SlidePreviewList from '@/components/SlidePreviewList.vue';
 import SlideEditor from '@/components/SlideEditor.vue';
-import { ref } from 'vue';
+import { ref, shallowRef } from 'vue';
 import type { Optional, SlideInfo } from '@/types';
 import { SlideType } from '@/types';
 import { v1 as uuidv1 } from 'uuid';
@@ -10,7 +10,7 @@ defineProps<{
   title: String
 }>();
 
-const slide = ref<Optional<SlideInfo>>(undefined);
+const slide = shallowRef<Optional<SlideInfo>>(undefined);
 const slides = ref<Array<SlideInfo>>([
   {
     uuid: uuidv1(),
@@ -39,7 +39,17 @@ let currentIndex = 0;
 
 function selectSlide(index: number) {
   currentIndex = index;
-  slide.value = slides.value[index];
+  const selected = slides.value[index];
+  // todo make this more beautiful
+  const clone: any = {};
+  clone.uuid = selected.uuid;
+  clone.type = selected.type;
+  clone.title = selected.title;
+  if (selected.type === SlideType.Question) {
+    clone.answers = [];
+    selected.answers.forEach((answer) => clone.answers.push({ ...answer }));
+  }
+  slide.value = clone;
 }
 
 function addSlide(type: SlideType, beforeIndex: number) {

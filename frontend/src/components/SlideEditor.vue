@@ -14,7 +14,7 @@ defineEmits<{
 </script>
 
 <template>
-  <div class="p-3 h-[80vh] mr-3">
+  <div class="p-3 h-full p-3 bg-center bg-cover bg-[url('todo')]">
     <SlideSlideEditor
       v-if="slide.type == SlideType.Slide"
       :slide="slide"
