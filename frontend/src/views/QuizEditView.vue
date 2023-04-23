@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import SlidePreviewList from '@/components/SlidePreviewList.vue';
 import SlideEditor from '@/components/SlideEditor.vue';
-import { ref, shallowRef } from 'vue';
+import { reactive, ref, shallowRef } from 'vue';
 import type { Optional, SlideInfo } from '@/types';
 import { SlideType } from '@/types';
 import { v1 as uuidv1 } from 'uuid';
@@ -35,11 +35,11 @@ const slides = ref<Array<SlideInfo>>([
   },
 ]);
 
-let currentIndex = 0;
+const state = reactive({
+  currentIndex: 0,
+});
 
-function selectSlide(index: number) {
-  currentIndex = index;
-  const selected = slides.value[index];
+function cloneSlideInfo(selected: SlideInfo): SlideInfo {
   // todo make this more beautiful
   const clone: any = {};
   clone.uuid = selected.uuid;
@@ -49,7 +49,13 @@ function selectSlide(index: number) {
     clone.answers = [];
     selected.answers.forEach((answer) => clone.answers.push({ ...answer }));
   }
-  slide.value = clone;
+  return clone;
+}
+
+function selectSlide(index: number) {
+  state.currentIndex = index;
+  const selected = slides.value[state.currentIndex];
+  slide.value = cloneSlideInfo(selected);
 }
 
 function addSlide(type: SlideType, beforeIndex: number) {
@@ -86,19 +92,38 @@ function addSlide(type: SlideType, beforeIndex: number) {
 }
 
 function updateSlide(update: SlideInfo) {
-  slides.value[currentIndex] = update;
+  slides.value[state.currentIndex] = update;
+}
+
+function duplicateSlide(index: number) {
+  // todo there is still a bug here: when duplicating and then editing a slide, switching to the
+  //  original slide will not update the visible contents in the SlideEditor
+  if (index < slides.value.length) {
+    const selection = slides.value[index];
+    const duplicate = cloneSlideInfo(selection);
+    duplicate.uuid = uuidv1();
+    slides.value.splice(index + 1, 0, duplicate);
+    selectSlide(index + 1);
+  }
+}
+
+function deleteSlide(index: number) {
+  if (index < slides.value.length) slides.value.splice(index, 1);
 }
 </script>
 
 <template>
   <section>
-    <aside class="w-48">
+    <div class="aside w-80">
       <SlidePreviewList
         :slides="slides"
+        :active="state.currentIndex"
         @add="addSlide"
         @select="selectSlide"
+        @duplicate="duplicateSlide"
+        @delete="deleteSlide"
       />
-    </aside>
+    </div>
     <div class="editor">
       <SlideEditor
         v-if="slide"
@@ -111,13 +136,13 @@ function updateSlide(update: SlideInfo) {
 
 <style lang="postcss" scoped>
 section {
-    @apply flex items-start gap-x-5 h-full w-full pt-[56px] absolute top-0 left-0;
+    @apply flex items-start h-full w-full pt-[56px] absolute top-0 left-0;
 
-    aside {
+    .aside {
         @apply max-w-lg min-w-[240px];
     }
     .editor {
-        @apply w-full h-full border;
+        @apply w-full h-full;
     }
 }
 </style>

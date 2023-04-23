@@ -19,16 +19,14 @@ function titleChange(ev: Event) {
 </script>
 
 <template>
-  <div>
-    <h2>
-      Title:
-      <span
-        contenteditable="true"
-        @input="titleChange"
-      >
-        {{ slide.title }}
-      </span>
-    </h2>
+  <div class="flex flex-col justify-between h-full">
+    <h1
+      class="text-center w-full bg-white/90 rounded p-4 outline-none"
+      contenteditable="true"
+      @input="titleChange"
+    >
+      {{ slide.title }}
+    </h1>
   </div>
 </template>
 

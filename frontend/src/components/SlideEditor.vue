@@ -14,7 +14,7 @@ defineEmits<{
 </script>
 
 <template>
-  <div class="p-3 h-full p-3 bg-center bg-cover bg-[url('todo')]">
+  <div class="p-3 h-full p-3 bg-center bg-cover bg-[url('https://placehold.co/2560x1440')]">
     <SlideSlideEditor
       v-if="slide.type == SlideType.Slide"
       :slide="slide"

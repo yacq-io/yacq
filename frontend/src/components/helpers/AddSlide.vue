@@ -11,7 +11,7 @@ defineEmits<{
 </script>
 
 <template>
-  <div class="flex flex-col justify-center font-bold">
+  <div class="flex flex-col justify-center font-bold w-full p-2">
     <button
       type="button"
       class="bg-blue-700 hover:bg-blue-600 text-white"
@@ -31,6 +31,6 @@ defineEmits<{
 
 <style lang="postcss" scoped>
 button {
-    @apply w-full p-2 rounded-lg m-2;
+    @apply w-full p-2 rounded-lg my-2;
 }
 </style>

@@ -52,7 +52,7 @@ function answerCorrectChange(ev: Event, id: number) {
     >
       {{ slide.title }}
     </h1>
-    <ol class="grid grid-cols-2 gap-5 mx-10">
+    <ol class="grid grid-cols-2 gap-5 mx-10 mb-16">
       <li
         v-for="n in 4"
         :key="n-1"
